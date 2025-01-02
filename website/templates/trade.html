@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Trade{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Trade</title>
+    <link rel="stylesheet" type="text/css" href="static/trade.css">
+</head>
+<body>
+    <h1 align="center">Trading crypto</h1>
+    <form name="symbol_form" action="#" method="POST">
+        <label for="symbol">Choose an option:</label>
+        <select id="symbol" name="symbol" required>
+            <option value="BTC">Bitcoin</option>
+            <option value="ETH">Ethereum</option>
+            <option value="ADA">Cardano</option>
+            <option value="XRP">Ripple</option>
+            <option value="SOL">Solana</option>
+        </select><br>
+        <button type="submit" value = "submit" class = "btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <div id="time">
+        <form name="time_form" action="#" method="POST"  disabled>
+            <button type="submit" name="time" value="1HOUR" class="btn btn-outline-secondary">1H</button>
+            <button type="submit" name="time" value="12HOUR" class="btn btn-outline-secondary">12H</button>
+            <button type="submit" name="time" value="1DAY" class="btn btn-outline-secondary">1D</button>
+            <button type="submit" name="time" value="1WEEK" class="btn btn-outline-secondary">1W</button>
+            <button type="submit" name="time" value="1MONTH" class="btn btn-outline-secondary">1M</button>
+        </form>
+    </div>
+
+        <form method="POST" action="" name="buy_form">
+            <label for="buy" >Buy:</label><br>
+            <input type="number" id="buy" name="buy" placeholder="Enter the amount you want to buy" maxlength="10" required>
+            <label>$</label>
+            <button type="submit" value = "buy" class = "btn btn-primary">Buy</button>
+        </form>
+        <br>
+        <form method="POST" action="" name="sell_form">
+            <label for="sell" style="margin-left: 763px;">Sell:</label><br>
+            <input type="number" id="sell" name="sell" placeholder="Enter the amount you want to sell" maxlength="10" required>
+            <label>$</label>
+            <button type="submit" value = "Submit" class = "btn btn-primary">Sell</button>
+        </form>
+    <br>
+    <p>Currently selected {{ current_symbol }}</p>
+    {{ graph_html|safe}}
+    <script>
+    const dropdown = document.getElementById('symbol');
+    const output = document.getElementById('output');
+
+    dropdown.addEventListener('change', function() {
+      output.textContent = `You selected: ${dropdown.value}`;
+    });
+    </script>
+</body>
+</html>
+{% endblock %}

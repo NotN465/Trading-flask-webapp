@@ -1,0 +1,13 @@
+#time {
+            float: left;
+            margin-right: 500px;
+}
+#buy{
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+#sell{
+    margin-left: 763px;
+    border: 2px solid gray;
+    border-radius: 10px;
+}

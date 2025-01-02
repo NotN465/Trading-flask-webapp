@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Crypto{% endblock %}
+{% block content %}
+<head>
+    <title>Crypto</title>
+        <script>
+        async function fetchCryptoPrices() {
+            try {
+                const response = await fetch('/api/coins'); // Fetch data from Flask API
+                const data = await response.json();
+
+                // Update the displayed prices dynamically
+                document.getElementById('bitcoin').textContent = data.bitcoin + ' USDT';
+                document.getElementById('ethereum').textContent = data.ethereum + ' USDT';
+                document.getElementById('cardano').textContent = data.cardano + ' USDT';
+                document.getElementById('ripple').textContent = data.ripple + ' USDT';
+                document.getElementById('solana').textContent = data.solana + ' USDT';
+                document.getElementById('prev_bitcoin').textContent = data.prev_bitcoin + ' USDT';
+                document.getElementById('prev_ethereum').textContent = data.prev_ethereum + ' USDT';
+                document.getElementById('prev_cardano').textContent = data.prev_cardano + ' USDT';
+                document.getElementById('prev_ripple').textContent = data.prev_ripple + ' USDT';
+                document.getElementById('prev_solana').textContent = data.prev_solana + ' USDT';
+                if (data.bitcoin > data.prev_bitcoin){
+                difference = (data.bitcoin - data.prev_bitcoin)/data.prev_bitcoin*100;
+                document.getElementById("bitcoin_difference").textContent = '+' + difference.toFixed(2) + '%';
+                document.getElementById("bitcoin").style.color="green";
+                }
+                else{
+                difference = (data.prev_bitcoin - data.bitcoin)/data.bitcoin*100;
+                document.getElementById("bitcoin_difference").textContent = '-' + difference.toFixed(2) + '%';
+                document.getElementById("bitcoin").style.color="red";
+                }
+                if (data.ethereum > data.prev_ethereum){
+                difference = (data.ethereum - data.prev_ethereum)/data.prev_ethereum*100;
+                document.getElementById("ethereum_difference").textContent = '+' + difference.toFixed(2) + '%';
+                document.getElementById("ethereum").style.color="green";
+                }
+                else{
+                difference = (data.prev_ethereum - data.ethereum)/data.ethereum*100;
+                document.getElementById("ethereum_difference").textContent = '-' + difference.toFixed(2) + '%';
+                document.getElementById("ethereum").style.color="red";
+                }
+                if (data.cardano > data.prev_cardano){
+                difference = (data.cardano - data.prev_cardano)/data.prev_cardano*100;
+                document.getElementById("cardano_difference").textContent = '+' + difference.toFixed(2) + '%';
+                document.getElementById("cardano").style.color="green";
+                }
+                else{
+                difference = (data.prev_cardano - data.cardano)/data.cardano*100;
+                document.getElementById("cardano_difference").textContent = '-' + difference.toFixed(2) + '%';
+                document.getElementById("cardano").style.color="red";
+                }
+                if (data.ripple > data.prev_ripple){
+                difference = (data.ripple - data.prev_ripple)/data.prev_ripple*100;
+                document.getElementById("ripple_difference").textContent = '+' + difference.toFixed(2) + '%';
+                document.getElementById("ripple").style.color="green";
+                }
+                else{
+                difference = (data.prev_ripple - data.ripple)/data.ripple*100;
+                document.getElementById("ripple_difference").textContent = '-' + difference.toFixed(2) + '%';
+                document.getElementById("ripple").style.color="red";
+                }
+                if (data.solana > data.prev_solana){
+                difference = (data.solana - data.prev_solana)/data.prev_solana*100;
+                document.getElementById("solana_difference").textContent = '+' + difference.toFixed(2) + '%';
+                document.getElementById("solana").style.color="green";
+                }
+                else{
+                difference = (data.prev_solana - data.solana)/data.solana*100;
+                document.getElementById("solana_difference").textContent = '-' + difference.toFixed(2) + '%';
+                document.getElementById("solana").style.color="red";
+                }
+            } catch (error) {
+                console.error('Error fetching crypto prices:', error);
+            }
+        }
+
+        // Refresh data every 10 seconds
+        setInterval(fetchCryptoPrices, 10000);
+
+        // Fetch data when the page loads
+        document.addEventListener('DOMContentLoaded', fetchCryptoPrices);
+    </script>
+</head>
+<body>
+<h1 align="center">Crypto</h1>
+<p align="center">Bitcoin: <span id="bitcoin"></span></p> <p align="center">Previous Bitcoin: <span id="prev_bitcoin"></span> <span id="bitcoin_difference"></span></p>
+<p align="center">Ethereum: <span id="ethereum"></span></p> <p align="center">Previous Ethereum: <span id="prev_ethereum"></span> <span id="ethereum_difference"></span></p>
+<p align="center">Cardano: <span id="cardano"></span></p> <p align="center">Previous Cardano: <span id="prev_cardano"></span> <span id="cardano_difference"></span></p>
+<p align="center">Ripple: <span id="ripple"></span></p> <p align="center">Previous Ripple: <span id="prev_ripple"></span> <span id="ripple_difference"></span></p>
+<p align="center">Solana: <span id="solana"></span></p> <p align="center">Previous Solana: <span id="prev_solana"></span> <span id="solana_difference"></span></p>
+</body>
+{% endblock %}
