@@ -4,7 +4,7 @@ from os import path
 from flask_login import LoginManager
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-engine = create_engine('sqlite:///D:/pythonProject1/Flask trading app/instance/database.db')
+engine = create_engine('sqlite:///C:/Users/Korisnik/PycharmProjects/pythonProject/Trading app/Trading-flask-webapp/instance/database.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 

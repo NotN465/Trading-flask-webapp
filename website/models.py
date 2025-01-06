@@ -3,7 +3,7 @@ from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship,declarative_base
 from sqlalchemy import Column, Integer, String, ForeignKey,create_engine
 
-engine = create_engine('sqlite:///D:/pythonProject1/Flask trading app/instance/database.db')
+engine = create_engine('sqlite:///C:/Users/Korisnik/PycharmProjects/pythonProject/Trading app/Trading-flask-webapp/instance/database.db')
 Model = declarative_base()
 
 class User(Model, UserMixin):

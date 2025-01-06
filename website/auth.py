@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 
 auth = Blueprint('auth',__name__)
 
-engine = create_engine('sqlite:///D:/pythonProject1/Flask trading app/instance/database.db')
+engine = create_engine('sqlite:///C:/Users/Korisnik/PycharmProjects/pythonProject/Trading app/Trading-flask-webapp/instance/database.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 

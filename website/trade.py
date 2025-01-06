@@ -9,7 +9,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 client = Client()
 trade_blueprint = Blueprint('trade',__name__)
-engine = create_engine('sqlite:///D:/pythonProject1/Flask trading app/instance/database.db')
+engine = create_engine('sqlite:///C:/Users/Korisnik/PycharmProjects/pythonProject/Trading app/Trading-flask-webapp/instance/database.db')
 Session = sessionmaker(bind=engine)
 session = Session()
 

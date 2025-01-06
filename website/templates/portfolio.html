@@ -6,7 +6,33 @@
     <title>Crypto portfolio</title>
 </head>
 <body>
-    <h1 align="center">Some crypto</h1>
+    <h1 align="center">{{ firstname }}'s portfolio</h1>
+{% for i in range(len_coins) %}
+  <span>
+    <h2 id="{{ i }}">{{ coins[i] }} {{ difference[i] }}</h2>
+    <p>amount: {{ coins_amount[i] }} price: {{  coins_price[i] }}$</p>
+  </span>
+  <br>
+{% endfor %}
+    <script>
+        async function UpdatePortfolio(){
+           difference = {{ difference | tojson }}
+           coins = {{ coins | tojson }}
+           console.log(difference)
+           for (let i = 0; i < difference.length; i++) {
+           if (difference[i].includes("+")){
+               document.getElementById(i).textContent = coins[i] + " " +difference[i]
+               document.getElementById(i).style.color="green"
+           }
+           else{
+               document.getElementById(i).textContent = coins[i] + " " +difference[i]
+               document.getElementById(i).style.color="red"
+           }
+           console.log(document.getElementById(i).textContent+" now")
+           }
+        }
+        UpdatePortfolio()
+    </script>
 </body>
 </html>
 {% endblock %}
